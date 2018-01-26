@@ -28,7 +28,6 @@ public class Main {
         Query sklepy = em.createNamedQuery("Sklep.findAll");
         
         List<Sklep> sklepyList = (List<Sklep>) sklepy.getResultList();
-        System.out.println(sklepyList); //niestety nie wiem czemu nie wypelniaja sie pozycje zakupowe a w bazie istnieja...
         for(Sklep s : sklepyList)
         {
             s.getPozycjaSet().size();
@@ -37,7 +36,7 @@ public class Main {
             {
                 for(Pozycja p:temp)
                 {
-                    System.out.println("Za "+p.getNazwa()+" w sklepie "+s.getNazwa()+" nalezy wydac "+p.getCena()*p.getIlosc()+" poniewaz sztuk="+p.getIlosc()+" a cena jednostkowa="+p.getCena());
+                    System.out.println("Za "+p.getNazwa()+" w sklepie "+s.getNazwa()+" nalezy wydac "+p.getCena()*p.getIlosc()+" zl poniewaz sztuk="+p.getIlosc()+" a cena jednostkowa="+p.getCena());
                 }
             }
             else
@@ -46,13 +45,6 @@ public class Main {
             }
         }
         
-        Query pozycje = em.createNamedQuery("Pozycja.findAll");
-        
-        List<Pozycja> pozycjaList = (List<Pozycja>) pozycje.getResultList();
-        for(Pozycja p : pozycjaList)
-        {
-            System.out.println(p+" cena ogolna "+p.getIlosc()*p.getCena());
-        }
         em.getTransaction().commit();
         em.close();
         
@@ -82,7 +74,7 @@ public class Main {
         Sklep carrefour = new Sklep();
         carrefour.setNazwa("Carrefour");
         em.persist(carrefour);
-        ////////////////////////////////////
+
         Pozycja p1 = new Pozycja();
         p1.setNazwa("Gwozdzie");
         p1.setIlosc(10);
