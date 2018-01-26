@@ -6,6 +6,7 @@
 package zakupybaza;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.Basic;
@@ -48,7 +49,7 @@ public class Sklep implements Serializable {
     @Column(name = "Nazwa", nullable = false)
     private String nazwa;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sklep", fetch = FetchType.EAGER)
-    private Set<Pozycja> pozycjaSet;
+    private Set<Pozycja> pozycjaSet = new HashSet<Pozycja>();
 
     public Sklep() {
     }
@@ -89,6 +90,7 @@ public class Sklep implements Serializable {
     public void addPozycja(Pozycja p)
     {
         this.getPozycjaSet().add(p);
+        p.setSklep(this);
     }
     @Override
     public int hashCode() {

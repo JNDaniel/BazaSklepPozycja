@@ -107,7 +107,7 @@ public class Pozycja implements Serializable {
     }
 
     public void setSklep(Sklep sklep) {
-        sklep.addPozycja(this);
+        sklep.getPozycjaSet().add(this);
         this.sklep = sklep;
     }
 
